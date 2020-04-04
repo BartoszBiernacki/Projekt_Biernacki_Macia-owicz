@@ -1,0 +1,118 @@
+package Window_package;
+
+import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import Keyboard_package.Window;
+
+public class RightPanel extends JPanel {
+	
+	private static final long serialVersionUID = 1L;
+
+	StartStopButton startStopButton;
+	
+	JTextField fX;
+	JTextField fY;
+	JTextField rX;
+	JTextField rY;
+	JTextField vX;
+	JTextField vY;
+	JTextField m;
+	JButton options;
+
+	public RightPanel() {
+		setLayout(new GridLayout(18, 1, 5, 5));
+		add(new JLabel(" "));
+		
+		fX = new JTextField("Podaj Fx");
+		fX.setName("Fx");
+		fX.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {// TODO Auto-generated method stub
+			}			
+			@Override
+			public void mousePressed(MouseEvent e) {// TODO Auto-generated method stub
+			}			
+			@Override
+			public void mouseExited(MouseEvent e) {// TODO Auto-generated method stub
+			}			
+			@Override
+			public void mouseEntered(MouseEvent e) {// TODO Auto-generated method stub
+			}			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Window keysFrame = new Window("Podaj Fx", fX);
+				keysFrame.setVisible(true);	
+				JOptionPane.showMessageDialog(new JFrame(), "Uwaga backspace (<--) jeszcze nie dziala \n Nalezy pamietac o znaku mnozenia przed np. sin lub x\n 2sin(5)  --- zle\n 2*sin(5) --- dobrze", "INFO", JOptionPane.INFORMATION_MESSAGE);
+				
+			}
+		});
+		add(fX);
+		fY = new JTextField("Podaj Fy");
+		fY.setName("Fy");
+		fY.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {// TODO Auto-generated method stub
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {// TODO Auto-generated method stub
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {// TODO Auto-generated method stub
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {// TODO Auto-generated method stub
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Window keysFrame = new Window("Podaj Fy", fY);
+				keysFrame.setVisible(true);		
+				JOptionPane.showMessageDialog(new JFrame(), "Uwaga backspace (<--) jeszcze nie dziala \n Nalezy pamietac o znaku mnozenia przed np. sin lub x\n 2sin(5)  --- zle\n 2*sin(5) --- dobrze", "INFO", JOptionPane.INFORMATION_MESSAGE);
+				
+			}
+		});
+		add(fY);
+		
+		add(new JLabel(" "));
+		
+		rX = new JTextField("Podaj rx");
+		add(rX);
+		rY = new JTextField("Podaj ry");
+		add(rY);
+		
+		add(new JLabel(" "));
+		
+		vX = new JTextField("Podaj vx");
+		add(vX);
+		vY = new JTextField("Podaj vy");
+		add(vY);
+		
+		add(new JLabel(" "));
+		
+		m = new JTextField("Podaj m");
+		add(m);
+		
+		add(new JLabel(" "));
+		add(new JLabel(" "));
+		
+		options = new JButton("Opcje");
+		add(options);
+		
+		add(new JLabel(" "));
+		add(new JLabel(" "));
+		
+		startStopButton = new StartStopButton();
+		add(startStopButton);
+		
+		add(new JLabel(" "));
+	}
+
+}
