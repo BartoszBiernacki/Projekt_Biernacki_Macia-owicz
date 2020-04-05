@@ -95,4 +95,7 @@ public class Window extends JFrame
 			} catch (Exception e2) {} //do nothing
 		}
 	}
+	
+	public KeysPanel getKeysPanel() { return (keysPanel); }
+
 }

@@ -7,14 +7,16 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.script.ScriptException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import MathPackage.TextToEquation;
+import MathPackage.ArrowField;
+import Window_package.MainClass;
+import Window_package.RightPanel;
+import Window_package.VectorPanel;
 
 public class KeysPanel extends JPanel 
 {
@@ -550,23 +552,20 @@ public class KeysPanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				try 
-				{
-					double result = TextToEquation.evaluateTwoVariableFunctionInString(prawdziwyEfektKlikania, "firstVariable", "secondVariable", 2, 3);
-					
-					String resultInString = new String();
-					resultInString = resultInString +result;
-					JOptionPane.showMessageDialog(new JFrame(), resultInString, "Result for x=2, y=3", JOptionPane.INFORMATION_MESSAGE);
-					field.setText(field.getName() + "=" + prawdziwyEfektKlikania);
-				} 
-				catch (ScriptException e1) 
-				{
-					e1.printStackTrace();
-				}
+				field.setText(field.getName() + "=" + prawdziwyEfektKlikania);
+				
+				if(RightPanel.lastJTextField == "F(x)") { RightPanel.xTrueForceInString = prawdziwyEfektKlikania; }
+				if(RightPanel.lastJTextField == "F(y)") { RightPanel.yTrueForceInString = prawdziwyEfektKlikania; }
+				
+				VectorPanel.arrowField = new ArrowField(RightPanel.xTrueForceInString, RightPanel.yTrueForceInString);
+				MainClass.frame.setVisible(false);
+				MainClass.frame.setVisible(true);
 			}
 		}; ok.addActionListener(okButtonListener);
 		//***********************************************************************************
-	}
-
+	}//KONIEC KONSTRUKTOA KLAWIATURY=================================================================
+	
+	public String getPrawdziwyEfektKlikania () { return (prawdziwyEfektKlikania); }
+	
 }
 

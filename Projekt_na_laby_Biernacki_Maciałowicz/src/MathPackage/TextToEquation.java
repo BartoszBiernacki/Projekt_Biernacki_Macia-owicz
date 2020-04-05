@@ -45,7 +45,7 @@ public class TextToEquation
 		} 
 		catch (Exception e) 
 		{
-			JOptionPane.showMessageDialog(new JFrame(), "Computation error, I'm gonna return 0", "Info message", JOptionPane.INFORMATION_MESSAGE);
+			//JOptionPane.showMessageDialog(new JFrame(), "Computation error, I'm gonna return 0", "Info message", JOptionPane.INFORMATION_MESSAGE);
 			return 0;
 		}
 	}
@@ -71,7 +71,7 @@ public class TextToEquation
 		} 
 		catch (Exception e) 
 		{
-			JOptionPane.showMessageDialog(new JFrame(), "Computation error, \n I'm gonna return 0", "Info message", JOptionPane.INFORMATION_MESSAGE);
+			//JOptionPane.showMessageDialog(new JFrame(), "Computation error, \n I'm gonna return 0", "Info message", JOptionPane.INFORMATION_MESSAGE);
 			return 0;
 		}
 	}
@@ -87,10 +87,5 @@ public class TextToEquation
 		
 		String twoVariableFormula = "Math.sqrt(Math.log(x)+2*y)";
 		System.out.println(twoVariableFormula + "=" + evaluateTwoVariableFunctionInString(twoVariableFormula, "x",	 "y", 1, 5));
-	
-		String test = new String("oczko");
-		String last = "ko";
-		test= test.substring(0, test.length() - last.length());
-		System.out.println(test);
 	}
 }

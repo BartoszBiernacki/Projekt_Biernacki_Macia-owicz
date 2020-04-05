@@ -39,9 +39,10 @@ public class Arrow extends Polygon {
 		setMagnitude(x, y);
 	}
 	
-	void translateArrow(int posX, int posY) {
-		positionX += posX;
-		positionY += posY;
+	void translateArrow(int posX, int posY) 
+	{
+		positionX = VectorPanel.width/2 + posX;
+		positionY = VectorPanel.height/2 -posY;
 		for(int i = 0; i < 7; i++)
 		{
 			xpoints[i] += positionX;
@@ -54,23 +55,9 @@ public class Arrow extends Polygon {
 		magnitude = Math.sqrt( argX*argX + argY*argY);
 	}
 	
-	void setArgument() {// nadaje wektorowi zerowemu argument równy -pi/2
-		if( x == 0)
-		{
-			if(y > 0)
-				argument = Math.PI/2;
-			else
-				argument = -Math.PI/2;
-		}
-		else if(y == 0)
-		{
-			if(x > 0)
-				argument = 0;
-			else
-				argument = Math.PI;
-		}
-		else
-			argument = Math.atan( y / x );
+	void setArgument() 
+	{
+		argument=Math.atan2(y, x);
 	}
 	
 	void rotateArrow(double theta) {
@@ -84,8 +71,8 @@ public class Arrow extends Polygon {
 			xTemp = xpoints[i];
 			yTemp = ypoints[i];
 			
-			xpoints[i] = (int) (xTemp*Math.cos(theta) - yTemp*Math.sin(theta));
-			ypoints[i] = (int) (xTemp*Math.sin(theta) + yTemp*Math.cos(theta));
+			xpoints[i] = (int) (xTemp*Math.cos(theta) + yTemp*Math.sin(theta));
+			ypoints[i] = (int) (-xTemp*Math.sin(theta) + yTemp*Math.cos(theta));
 			
 			
 			xpoints[i] += positionX;

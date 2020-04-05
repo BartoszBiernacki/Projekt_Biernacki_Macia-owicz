@@ -14,9 +14,10 @@ public class MainWindow extends JFrame {
 	VectorPanel vectorPanel;
 	RightPanel rightPanel;
 
-	public MainWindow(String arg0) throws HeadlessException {
+	public MainWindow(String arg0) throws HeadlessException 
+	{
 		super(arg0);
-		setSize(908, 800);
+		setSize(800, 700);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		menuBar = new MainMenu();
@@ -29,7 +30,5 @@ public class MainWindow extends JFrame {
 		
 		rightPanel = new RightPanel();
 		add(rightPanel, BorderLayout.LINE_END);
-		
 	}
-
 }

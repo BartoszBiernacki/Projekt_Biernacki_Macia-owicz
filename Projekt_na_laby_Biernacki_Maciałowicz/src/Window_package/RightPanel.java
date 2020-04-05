@@ -17,6 +17,9 @@ public class RightPanel extends JPanel {
 
 	StartStopButton startStopButton;
 	
+	public static String lastJTextField = new String();
+	public static String xTrueForceInString = "-1", yTrueForceInString = "0";
+	
 	JTextField fX;
 	JTextField fY;
 	JTextField rX;
@@ -26,11 +29,13 @@ public class RightPanel extends JPanel {
 	JTextField m;
 	JButton options;
 
-	public RightPanel() {
+	public RightPanel() 
+	{
+		xTrueForceInString = new String();
 		setLayout(new GridLayout(18, 1, 5, 5));
 		add(new JLabel(" "));
 		
-		fX = new JTextField("Podaj Fx");
+		fX = new JTextField("F(x)=");
 		fX.setName("Fx");
 		fX.addMouseListener(new MouseListener() {
 			@Override
@@ -46,13 +51,15 @@ public class RightPanel extends JPanel {
 			public void mouseEntered(MouseEvent e) {// TODO Auto-generated method stub
 			}			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) 
+			{
 				Window keysFrame = new Window("Podaj Fx", fX);
 				keysFrame.setVisible(true);	
+				lastJTextField = "F(x)";
 			}
 		});
 		add(fX);
-		fY = new JTextField("Podaj Fy");
+		fY = new JTextField("F(y)=");
 		fY.setName("Fy");
 		fY.addMouseListener(new MouseListener() {
 			@Override
@@ -67,10 +74,13 @@ public class RightPanel extends JPanel {
 			@Override
 			public void mouseEntered(MouseEvent e) {// TODO Auto-generated method stub
 			}
+			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) 
+			{
 				Window keysFrame = new Window("Podaj Fy", fY);
-				keysFrame.setVisible(true);		
+				keysFrame.setVisible(true);	
+				lastJTextField = "F(y)";
 			}
 		});
 		add(fY);
