@@ -9,6 +9,5 @@ public class MainClass
 	{
 		frame = new MainWindow("Window");
 		frame.setVisible(true);
-
 	}
 }
