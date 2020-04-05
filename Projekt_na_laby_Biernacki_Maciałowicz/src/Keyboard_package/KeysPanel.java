@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.script.ScriptException;
 import javax.swing.JButton;
@@ -16,9 +18,10 @@ import MathPackage.TextToEquation;
 
 public class KeysPanel extends JPanel 
 {
-	private static final long serialVersionUID = 1L;//dnjcnj
+	private static final long serialVersionUID = 1L;
 
 	String prawdziwyEfektKlikania;
+	List<String> clickHistory = new LinkedList<String>();
 	
 	final int gridRows = 5;
 	final int gridColumns = 7;
@@ -34,8 +37,6 @@ public class KeysPanel extends JPanel
 	JButton coma;
 	JButton backspace;
 	JButton decimalPoint;
-	JButton left;
-	JButton right;
 	JButton leftBracket;		
 	JButton rightBracket; 		
 	JButton squareRoot;			
@@ -60,6 +61,7 @@ public class KeysPanel extends JPanel
 	//KONSTRUKTOR KLAWIATURY===================================================================
 	public KeysPanel(Window frame, JTextField f) 
 	{
+		JOptionPane.showMessageDialog(new JFrame(), "Uwaga\n 2sin(5)  --- zle\n 2*sin(5) --- dobrze", "INFO", JOptionPane.INFORMATION_MESSAGE);
 		field = f;
 		
 		setLayout(new GridLayout(gridRows, gridColumns, gridHgap, gridVgap));
@@ -81,10 +83,6 @@ public class KeysPanel extends JPanel
 		backspace.setFont(new Font(null, Font.PLAIN, fontSize));
 		decimalPoint = new JButton(".");
 		decimalPoint.setFont(new Font(null, Font.PLAIN, fontSize));
-		left = new JButton("<");
-		left.setFont(new Font(null, Font.PLAIN, fontSize));
-		right = new JButton(">");
-		right.setFont(new Font(null, Font.PLAIN, fontSize));
 		leftBracket = new JButton("(");
 		leftBracket.setFont(new Font(null, Font.PLAIN, fontSize));
 		rightBracket = new JButton(")");
@@ -124,9 +122,6 @@ public class KeysPanel extends JPanel
 		
 		
 		//*********************************************************
-		left.setActionCommand(left.getText());
-		right.setActionCommand(right.getText());
-		
 		leftBracket.setActionCommand(leftBracket.getText());
 		rightBracket.setActionCommand(rightBracket.getText());
 		piValueButton.setActionCommand(piValueButton.getText());
@@ -204,9 +199,6 @@ public class KeysPanel extends JPanel
 		add(secondVariableButton);
 		add(ok);
 		
-		//add(left);
-		//add(right);
-
 		//*********************************************************************
 		ActionListener plusButtonListener = new ActionListener() 
 		{
@@ -214,6 +206,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania = prawdziwyEfektKlikania + "+";
+				clickHistory.add("+");
 			}
 		}; plus.addActionListener(plusButtonListener);
 		//*********************************************************************
@@ -223,6 +216,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania = prawdziwyEfektKlikania + "-";
+				clickHistory.add("-");
 			}
 		}; minus.addActionListener(minusButtonListener);
 		//*********************************************************************
@@ -232,6 +226,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania = prawdziwyEfektKlikania + "*";
+				clickHistory.add("*");
 			}
 		}; times.addActionListener(timesButtonListener);
 		//*********************************************************************
@@ -241,6 +236,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania = prawdziwyEfektKlikania + "/";
+				clickHistory.add("/");
 			}
 		}; divided.addActionListener(dividedButtonListener);
 		//*********************************************************************
@@ -250,6 +246,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania = prawdziwyEfektKlikania + ".";
+				clickHistory.add(".");
 			}
 		}; decimalPoint.addActionListener(decimalPointButtonListener);
 		//*********************************************************************
@@ -259,6 +256,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania = prawdziwyEfektKlikania + "(";
+				clickHistory.add("(");
 			}
 		}; leftBracket.addActionListener(leftBracketButtonListener);
 		//*********************************************************************
@@ -268,6 +266,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania = prawdziwyEfektKlikania + ")";
+				clickHistory.add(")");
 			}
 		}; rightBracket.addActionListener(rightBracketButtonListener);
 		//*********************************************************************
@@ -277,6 +276,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "0";
+				clickHistory.add("0");
 			}
 		}; digits[0].addActionListener(digit0_ButtonListener);
 		//*********************************************************************
@@ -286,6 +286,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "1";
+				clickHistory.add("1");
 			}
 		}; digits[1].addActionListener(digit1_ButtonListener);
 		//*********************************************************************
@@ -295,6 +296,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "2";
+				clickHistory.add("2");
 			}
 		}; digits[2].addActionListener(digit2_ButtonListener);
 		//*********************************************************************
@@ -304,6 +306,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "3";
+				clickHistory.add("3");
 			}
 		}; digits[3].addActionListener(digit3_ButtonListener);
 		//*********************************************************************
@@ -313,6 +316,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "4";
+				clickHistory.add("4");
 			}
 		}; digits[4].addActionListener(digit4_ButtonListener);
 		//*********************************************************************
@@ -322,6 +326,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "5";
+				clickHistory.add("5");
 			}
 		}; digits[5].addActionListener(digit5_ButtonListener);
 		//*********************************************************************
@@ -331,6 +336,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "6";
+				clickHistory.add("6");
 			}
 		}; digits[6].addActionListener(digit6_ButtonListener);
 		//*********************************************************************
@@ -340,6 +346,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "7";
+				clickHistory.add("7");
 			}
 		}; digits[7].addActionListener(digit7_ButtonListener);
 		//*********************************************************************
@@ -349,6 +356,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "8";
+				clickHistory.add("8");
 			}
 		}; digits[8].addActionListener(digit8_ButtonListener);
 		//*********************************************************************
@@ -358,6 +366,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "9";
+				clickHistory.add("9");
 			}
 		}; digits[9].addActionListener(digit9_ButtonListener);
 		//*********************************************************************
@@ -367,6 +376,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "Math.sqrt(";
+				clickHistory.add("Math.sqrt(");
 			}
 		}; squareRoot.addActionListener(squareRootButtonListener);
 		//*********************************************************************
@@ -376,6 +386,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "Math.abs(";
+				clickHistory.add("Math.abs(");
 			}
 		}; absoluteValue.addActionListener(absoluteValueButtonListener);
 		//*********************************************************************
@@ -385,6 +396,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "Math.sin(";
+				clickHistory.add("Math.sin(");
 			}
 		}; sinus.addActionListener(sinusButtonListener);
 		//*********************************************************************
@@ -394,6 +406,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "Math.cos(";
+				clickHistory.add("Math.cos(");
 			}
 		}; cosinus.addActionListener(cosinusButtonListener);
 		//*********************************************************************
@@ -403,6 +416,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "Math.tan(";
+				clickHistory.add("Math.tan(");
 			}
 		}; tangens.addActionListener(tangensButtonListener);
 		//*********************************************************************
@@ -412,6 +426,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "Math.log(";
+				clickHistory.add("Math.log(");
 			}
 		}; naturalLogarythm.addActionListener(naturalLogarythmButtonListener);
 		//*********************************************************************
@@ -421,6 +436,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "Math.pow(";
+				clickHistory.add("Math.pow(");
 			}
 		}; power.addActionListener(powerButtonListener);
 		//***********************************************************************************
@@ -430,6 +446,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "Math.exp(";
+				clickHistory.add("Math.exp(");
 			}
 		}; exp.addActionListener(expButtonListener);
 		//***********************************************************************************
@@ -439,6 +456,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "Math.asin(";
+				clickHistory.add("Math.asin(");
 			}
 		}; arcusSinus.addActionListener(arcusSinusButtonListener);
 		//***********************************************************************************
@@ -448,6 +466,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "Math.acos(";
+				clickHistory.add("Math.acos(");
 			}
 		}; arcusCosinus.addActionListener(arcusCosinusButtonListener);
 		//***********************************************************************************
@@ -457,6 +476,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "Math.atan(";
+				clickHistory.add("Math.atan(");
 			}
 		}; arcusTangens.addActionListener(arcusTangensButtonListener);
 		//***********************************************************************************
@@ -466,6 +486,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "firstVariable";
+				clickHistory.add("firstVariable");
 			}
 		}; firtstVariableButoon.addActionListener(firstVariableButtonListener);
 		//***********************************************************************************
@@ -475,6 +496,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "secondVariable";
+				clickHistory.add("secondVariable");
 			}
 		}; secondVariableButton.addActionListener(secondVariableButtonListener);
 		//***********************************************************************************
@@ -484,6 +506,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "3.14159265359";
+				clickHistory.add("3.14159265359");
 			}
 		}; piValueButton.addActionListener(piValueButtonListener);
 		//***********************************************************************************
@@ -493,6 +516,7 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "2.71828182846";
+				clickHistory.add("2.71828182846");
 			}
 		}; eValueButton.addActionListener(eValueButtonListener);
 		//***********************************************************************************
@@ -502,8 +526,24 @@ public class KeysPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				prawdziwyEfektKlikania =prawdziwyEfektKlikania + ",";
+				clickHistory.add(",");
 			}
 		}; coma.addActionListener(comaButtonListener);
+		//***********************************************************************************
+		ActionListener backspaceActionListener = new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				try 
+				{
+					String lastClick = clickHistory.get(clickHistory.size()-1);
+					int newLength = prawdziwyEfektKlikania.length() - lastClick.length() ;
+					prawdziwyEfektKlikania = prawdziwyEfektKlikania.substring(0, newLength);
+					clickHistory.remove(clickHistory.size()-1);
+				} catch (Exception e2) { } //do nothing
+			}
+		}; backspace.addActionListener(backspaceActionListener);
 		//***********************************************************************************
 		ActionListener okButtonListener = new ActionListener() 
 		{
@@ -514,20 +554,18 @@ public class KeysPanel extends JPanel
 				{
 					double result = TextToEquation.evaluateTwoVariableFunctionInString(prawdziwyEfektKlikania, "firstVariable", "secondVariable", 2, 3);
 					
-					String mess = new String();
-					mess = mess +result;
-					JOptionPane.showMessageDialog(new JFrame(), mess, "Result for x=2, y=3", JOptionPane.INFORMATION_MESSAGE);
+					String resultInString = new String();
+					resultInString = resultInString +result;
+					JOptionPane.showMessageDialog(new JFrame(), resultInString, "Result for x=2, y=3", JOptionPane.INFORMATION_MESSAGE);
 					field.setText(field.getName() + "=" + prawdziwyEfektKlikania);
 				} 
 				catch (ScriptException e1) 
 				{
 					e1.printStackTrace();
 				}
-				System.out.println(prawdziwyEfektKlikania);   //////////////////////Wypisuje na konsole zawartosc stringa (testowo)
 			}
 		}; ok.addActionListener(okButtonListener);
-		
-		//*********************************************************************
+		//***********************************************************************************
 	}
 
 }

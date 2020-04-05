@@ -17,7 +17,7 @@ public class MainWindow extends JFrame {
 	public MainWindow(String arg0) throws HeadlessException {
 		super(arg0);
 		setSize(908, 800);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		menuBar = new MainMenu();
 		setJMenuBar(menuBar);

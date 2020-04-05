@@ -17,7 +17,8 @@ public class Arrow extends Polygon {
 	static int topHalfWidth = 10;
 	static int topLength = 16;
 
-	public Arrow(int posX, int posY, double argX, double argY) {
+	public Arrow(int posX, int posY, double argX, double argY) 
+	{
 		positionX = 0;
 		positionY = 0;
 		x = argX;
@@ -83,8 +84,8 @@ public class Arrow extends Polygon {
 			xTemp = xpoints[i];
 			yTemp = ypoints[i];
 			
-			xpoints[i] = (int) (xTemp*Math.cos(theta) + yTemp*Math.sin(theta));
-			ypoints[i] = (int) (-xTemp*Math.sin(theta) + yTemp*Math.cos(theta));
+			xpoints[i] = (int) (xTemp*Math.cos(theta) - yTemp*Math.sin(theta));
+			ypoints[i] = (int) (xTemp*Math.sin(theta) + yTemp*Math.cos(theta));
 			
 			
 			xpoints[i] += positionX;

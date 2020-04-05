@@ -5,9 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -51,8 +49,6 @@ public class RightPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				Window keysFrame = new Window("Podaj Fx", fX);
 				keysFrame.setVisible(true);	
-				JOptionPane.showMessageDialog(new JFrame(), "Uwaga backspace (<--) jeszcze nie dziala \n Nalezy pamietac o znaku mnozenia przed np. sin lub x\n 2sin(5)  --- zle\n 2*sin(5) --- dobrze", "INFO", JOptionPane.INFORMATION_MESSAGE);
-				
 			}
 		});
 		add(fX);
@@ -75,8 +71,6 @@ public class RightPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				Window keysFrame = new Window("Podaj Fy", fY);
 				keysFrame.setVisible(true);		
-				JOptionPane.showMessageDialog(new JFrame(), "Uwaga backspace (<--) jeszcze nie dziala \n Nalezy pamietac o znaku mnozenia przed np. sin lub x\n 2sin(5)  --- zle\n 2*sin(5) --- dobrze", "INFO", JOptionPane.INFORMATION_MESSAGE);
-				
 			}
 		});
 		add(fY);

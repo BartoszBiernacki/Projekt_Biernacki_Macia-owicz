@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
@@ -15,6 +18,7 @@ public class Window extends JFrame
 	JTextField field;
 	int fontSize;
 	String written;
+	List<String> printedHistory = new LinkedList<String>();
 	
 	KeysPanel keysPanel;
 	
@@ -32,10 +36,7 @@ public class Window extends JFrame
 		keysPanel = new KeysPanel(this, f);
 		add(keysPanel, BorderLayout.CENTER);
 		
-		for(int i = 0; i < 10; i++)
-		{
-			keysPanel.digits[i].addActionListener(new KeysListener());
-		}
+		for(int i = 0; i < 10; i++) { keysPanel.digits[i].addActionListener(new KeysListener()); }
 		
 		keysPanel.plus.addActionListener(new KeysListener());
 		keysPanel.minus.addActionListener(new KeysListener());
@@ -44,17 +45,6 @@ public class Window extends JFrame
 		keysPanel.coma.addActionListener(new KeysListener());
 		keysPanel.backspace.addActionListener(new BackspaceListener());
 		keysPanel.decimalPoint.addActionListener(new KeysListener());
-		keysPanel.left.addActionListener(new CursorListener());
-		keysPanel.right.addActionListener(new CursorListener());
-		keysPanel.ok.addActionListener(new OkListener());
-		keysPanel.ok.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				
-			}
-		});
 		
 		keysPanel.leftBracket.addActionListener(new KeysListener());
 		keysPanel.rightBracket.addActionListener(new KeysListener());
@@ -76,48 +66,33 @@ public class Window extends JFrame
 	}
 	
 	
-	class KeysListener implements ActionListener {
-
+	class KeysListener implements ActionListener 
+	{
 		@Override
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e) 
+		{
+			printedHistory.add(e.getActionCommand());
 			written += e.getActionCommand();
 			field.setText(written);
 			field.grabFocus();
 		}
-		
 	}
-	class OkListener implements ActionListener {
-		
+	
+	
+	class BackspaceListener implements ActionListener 
+	{
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			
+		public void actionPerformed(ActionEvent e) 
+		{
+			try 
+			{
+				String lastClick = printedHistory.get(printedHistory.size()-1);
+				int newLength = written.length() - lastClick.length() ;
+				written = written.substring(0, newLength);
+				field.setText(written);
+				field.setCaretPosition(written.length());
+				printedHistory.remove(printedHistory.size()-1);
+			} catch (Exception e2) {} //do nothing
 		}
 	}
-	class BackspaceListener implements ActionListener {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			int x = field.getCaretPosition();
-			String a = written.substring(0, x-1);
-			a += written.substring(x, written.length());//trzeba dodaæ obs³ugê b³êdu, pluje siê, jak siê za du¿o razy wciœnie backspace
-			written = a;
-			field.setText(written);
-			field.setCaretPosition(x-1);
-			field.grabFocus();
-		}
-	}
-	class CursorListener implements ActionListener {//tutaj to samo co wy¿ej
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			System.out.println(field.getCaretPosition());
-			if(e.getActionCommand().equals("<"))
-				field.setCaretPosition(field.getCaretPosition()-1);
-			else
-				field.setCaretPosition(field.getCaretPosition()+1);
-			field.grabFocus();
-			
-		}
-	}
-
 }
